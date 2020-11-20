@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" href="/css/swiper-bundle.css">
+    <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/js/script.js"></script>
+    <title>Lesson Learned Datenbank Startseite</title>
+</head>
+<body>
+<%- include header.ejs %>
+<div class="body-container">
+    <div class="content">
+<div  class="ll-logo">
+    Lessons Learned Datenbank
+</div>
+
+        <%- include searchbox.ejs %>
+        <div class="contact-new">
+            <img src="images/boss.png" />
+            <div class="contact-info">
+                <li><b> Dein Ansprechpartner</b></li>
+                <li> Sulimma, Klaus (G-QM)</li>
+                <li><a href = "mailto: klaus.sulimma@iav.de">klaus.sulimma@iav.de</a></li>
+            </div>
+        </div>
+
+         <p class="heading">Top Lessons Learned</p>
+
+        <%- include top10lesson.ejs%>
+    </div>
+    <%- include footer-new.ejs%>
+
+</div>
+
+<%- include fileupload.ejs%>
+
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    zoom:80%;
+}
+.body-container {
+    width: 100%;
+    max-width: 980px;
+    margin: 25px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    text-align: left;
+
+}
+
+img {
+    max-width:100%;
+    max-height:100%;
+    border:0;
+}
+.plus-button{
+    display:block;
+    height:auto;
+    width: 20px;
+    float: right;
+    margin-top:15px;
+    margin-right: 5px;
+}
+
+.content{
+    height: 600px;
+    overflow-y: scroll;
+    border: 1px solid black;
+    padding: 0 12px 12px;
+}
+
+/* Style the tab */
+.tab {
+    color: #FFFFFF;
+    overflow: hidden;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 15px 15px 0px 0px;
+    border-radius: 15px 15px 0px 0px;
+    color: #FFFFFF;
+    background-color: #5daedb;
+    float: left;
+    width: 300px;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    border: none;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #0C3868;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+
+    background-color: #0C3868;
+    border: 1px solid #5daedb;
+    border-bottom: none;
+}
+
+/* Style the tab content */
+.tabcontent {
+    padding: 30px 50px;
+    border: 1px solid #5daedb;
+
+}
+
+.inhalt {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.inhalt td, .inhalt th {
+    border: none;
+    padding: 8px;
+}
+
+/*.inhalt .head {*/
+/*    background-color: #f2f2f2;*/
+/*}*/
+
+
+.inhalt tr:hover {
+    background-color: #ddd;
+}
+
+#basisinformation {
+    text-align: center;
+    color: #0E4A80;
+}
+#basis-table, th,td {
+    border: 1px solid #5daedb;
+    border-collapse: collapse;
+    padding:10px;
+    margin: 20px auto;
+}
+
+button {
+    padding: 9px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #5DAEDB;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 20px;
+    text-align: center;
+}
+button:hover {
+    background-color: #0E4A80;
+}
+
+

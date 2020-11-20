@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/css/result.css">
+    <script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="/js/script.js"></script>
+    <title>Details</title>
+    <style>
+        /* Style the tab */
+        .tab {
+            color: #FFFFFF;
+            overflow: hidden;
+        }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            -moz-border-radius: 0px;
+            -webkit-border-radius: 15px 15px 0px 0px;
+            border-radius: 15px 15px 0px 0px;
+            color: #FFFFFF;
+            background-color: #5daedb;
+            float: left;
+            width: 300px;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+            border: none;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #0C3868;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+
+            background-color: #0C3868;
+            border: 1px solid #5daedb;
+            border-bottom: none;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            padding: 30px 50px;
+            border: 1px solid #5daedb;
+
+        }
+
+        .inhalt {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .inhalt td, .inhalt th {
+            border: none;
+            padding: 8px;
+        }
+
+        /*.inhalt .head {*/
+        /*    background-color: #f2f2f2;*/
+        /*}*/
+
+
+        .inhalt tr:hover {
+            background-color: #ddd;
+        }
+
+        #basisinformation {
+            text-align: center;
+            color: #0E4A80;
+        }
+        #basis-table, th,td {
+            border: 1px solid #5daedb;
+            border-collapse: collapse;
+            padding:10px;
+            margin: 20px auto;
+        }
+
+
+    </style>
+</head>
+<body>
+<%- include header.ejs%>
+<div class="container">
+        <%const iterateHeader = (obj) => {%>
+        <%Object.keys(obj).forEach(key => {%>
+
+        <%if(obj[key]!= " ") {%>
+    <p><%=key%>: <%=obj[key]%></p>
+        <%}%>
+
+
+        <%})%>
+        <%}%>
+
+    <%const iteratePositiv = (obj) => {%>
+    <%for (var i in obj) {%>
+        <% var object = obj[i]%>
+        <%if (object.kommentar1 !== " " || object.kommentar2 !== " " || object.kommentar3 !== " " ||object.kommentar4 !== " "|| object.kommentar5 !== " " ) {%>
+        <tr class="head" style="cursor:pointer;"><td colspan="2"><h4 style="float:left"><%=object.titel%></h4><a><img class="plus-button" src="images/plusbutton.svg" style="cursor:pointer;" /></a></td></tr>
+        <% }else { %>
+        <tr class="head"><td colspan="2"><h4 style="float:left"><%=object.titel%></h4></td></tr>
+        <%}%>
+        <tr class="hide">
+        <% for(var z=1; z<Object.keys(object).length; z++) { %>
+
+        <%if(object[Object.keys(object)[z]] !=" ") {%>
+        <td><%=object[Object.keys(object)[z]]%></td>
+        <%}%>
+        </tr>
+
+        <%}%>
+    <%}%>
+    <%}%>
+
+
+
+    <div id="display-result">
+        <div id="basisinformation">
+            <h2><%=posts.basisinfo.projekt%> </h2>
+            <table id="basis-table">
+                <tr>
+                    <th rowspan="2">OE</th>
+                    <th rowspan="2">Kunde</th>
+                    <th rowspan="2">Projekt</th>
+                    <th colspan="5">Gewerke</th>
+                </tr>
+                <tr>
+                    <td>Fachgruppen</td>
+                    <td>Gesamtfahrzeug</td>
+                    <td>Vorseriencenter </td>
+                    <td>Projektmanagement </td>
+                    <td>Industrialisierung </td>
+                </tr>
+                <tr>
+                    <td><%=posts.basisinfo.oe%></td>
+                    <td><%=posts.basisinfo.kunde%> </td>
+                    <td><%=posts.basisinfo.projekt%> </td>
+                    <td><%=iterateHeader(posts.basisinfo.gewerke.fachgruppen)%></td>
+                    <td><%=iterateHeader(posts.basisinfo.gewerke.gesamtfahrzeug)%></td>
+                    <td><%=posts.basisinfo.gewerke.vorseriencenter%></td>
+                    <td><%=posts.basisinfo.gewerke.projektmanagement%></td>
+                    <td><%=posts.basisinfo.gewerke.industrialisierung%></td>
+
+
+                </tr>
+
+
+
+            </table>
+
+
+        </div>
+        <div class="tab">
+            <div style="text-align: center">
+                <button class="tablinks" onclick="openCity(event, 'positiv')" style="text-align: center">Positiv</button>
+                <button class="tablinks" onclick="openCity(event, 'negativ')" style="text-align: center; margin-left:10px;">Negativ + Maßnahmen</button>
+            </div>
+        </div>
+
+        <div id="positiv" class="tabcontent">
+<!--            <h4> Das würden wir wieder so machen</h4>-->
+            <table class="inhalt">
+            <%=iteratePositiv(posts.positiv)%>
+            </table>
+        </div>
+        <%const loop = (obj) => {%>
+
+        <%for (var i in obj) {%>
+
+        <% var object = obj[i]%>
+            <%if (object.kommentar1 !== " " || object.kommentar2 !== " " || object.kommentar3 !== " " ||object.kommentar4 !== " "|| object.kommentar5 !== " " ) {%>
+                <tr class="head" style="cursor: pointer"><td colspan="2"><h4 style="float:left"><%=object.titel%></h4><a><img class="plus-button" src="images/plusbutton.svg" style="cursor:pointer;" /></a></td></tr>
+            <% }else { %>
+            <tr class="head"><td colspan="2"><h4 style="float:left"><%=object.titel%></h4></td></tr>
+            <%}%>
+            <% for(var z=1; z<Object.keys(object).length; z+=11) { %>
+                <% var count = 0;%>
+            <%if(object[Object.keys(object)[z]] !=" ") {%>
+
+               <tr class="hide"><td><%=object[Object.keys(object)[z]]%></td>
+                <%}%>
+                    <%for(var y=z+1; y<z+11; y++) {%>
+
+                        <%if(object[Object.keys(object)[y]] != " " && count == 0) {%>
+                        <td><p><%=object[Object.keys(object)[y]]%></p>
+                          <%  count++;%>
+                            <%continue;%>
+                        <%}%>
+                            <%if(object[Object.keys(object)[y]] != " " && count != 0) {%>
+                        <p><%=object[Object.keys(object)[y]]%></p>
+                        <%}%>
+
+                        <%}%>
+                    </td>
+                </tr>
+        <%}%>
+
+
+        <%}%>
+
+        <%}%>
+
+
+
+        <div id="negativ" class="tabcontent" style="display: none">
+            <table class="inhalt">
+                <tr>
+                    <td><h3 style="text-align: center">Das würden wir anders machen</h3></td>
+                    <td><h3 style="text-align: center">Maßnahme</h3></td>
+                </tr>
+
+                <%=loop(posts.negativ)%>
+
+            </table>
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+
+<script>
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+
+    $(document).ready(function() {
+        $('.inhalt tr:not(.head)').hide();
+
+        $('.inhalt tr.head').click(function() {
+
+            $(this).find('.plus-button').attr('src', function(_,value) {
+                        return value === 'images/plusbutton.svg' ? 'images/minus.svg' : 'images/plusbutton.svg'
+            });
+
+            $(this).nextUntil('tr.head').slideToggle(100, function() {});
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

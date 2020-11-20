@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>arrows (1)</title>
+    <defs>
+        <linearGradient x1="50.0000195%" y1="-1.70986074e-09%" x2="50.0000195%" y2="100.000039%" id="linearGradient-1">
+            <stop stop-color="#0C3768" offset="0%"></stop>
+            <stop stop-color="#5CAFDA" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Lesson-Learned" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-2" transform="translate(-1020.000000, -741.000000)" fill="url(#linearGradient-1)" fill-rule="nonzero">
+            <g id="Group-3" transform="translate(429.000000, 512.000000)">
+                <g id="arrows-(1)" transform="translate(591.000000, 229.000000)">
+                    <path d="M19.9889124,1.56163378 L2.38317027,1.56163378 C1.9378704,1.56163378 1.56163378,1.95497029 1.56163378,2.42053236 L1.56163378,19.9889124 L0,19.9889124 L0,2.42053236 C0,1.78631384 0.244825136,1.18434306 0.689344192,0.725496014 C1.1426084,0.257669574 1.74414973,0 2.38317027,0 L19.9889124,0 L19.9889124,1.56163378 Z M20,18.8957688 L6.56994948,5.46571823 L12.9615604,5.46571823 L12.9615604,3.90408445 L3.90408445,3.90408445 L3.90408445,12.9615604 L5.46571823,12.9615604 L5.46571823,6.56994948 L18.8957688,20 L20,18.8957688 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

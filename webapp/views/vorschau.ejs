@@ -1,0 +1,193 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/vorschau.css">
+    <script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
+    <title>Vorschau</title>
+</head>
+<body>
+<%- include header.ejs%>
+<div class="body-container">
+    <div class="content">
+        <%const iterateHeader = (obj) => {%>
+        <%Object.keys(obj).forEach(key => {%>
+
+        <%if(obj[key]!= " ") {%>
+        <p>- <%=key%>: <%=obj[key]%></p>
+        <%}%>
+
+
+        <%})%>
+        <%}%>
+
+
+        <%const iteratePositiv = (obj) => {%>
+        <%for (var i in obj) {%>
+            <% var object = obj[i]%>
+            <%if (object.kommentar1 !== " " || object.kommentar2 !== " " || object.kommentar3 !== " " ||object.kommentar4 !== " "|| object.kommentar5 !== " " ) {%>
+            <tr class="head" style="cursor:pointer;"><td colspan="2"><h4 style="float:left"><%=object.titel%></h4><a><img class="plus-button" src="images/plusbutton.svg" style="cursor:pointer;" /></a></td></tr>
+            <% }else { %>
+            <tr class="head"><td colspan="2"><h4 style="float:left"><%=object.titel%></h4></td></tr>
+            <%}%>
+            <tr class="hide">
+                <% for(var z=1; z<Object.keys(object).length; z++) { %>
+
+                <%if(object[Object.keys(object)[z]] !=" ") {%>
+                <td><%=object[Object.keys(object)[z]]%></td>
+                <%}%>
+            </tr>
+
+            <%}%>
+        <%}%>
+        <%}%>
+
+
+        <div id="display-result">
+            <div id="basisinformation">
+                <h2><%=posts.basisinfo.projekt%> </h2>
+                <table id="basis-table">
+                    <tr>
+                        <th rowspan="2">OE</th>
+                        <th rowspan="2">Kunde</th>
+                        <th rowspan="2">Name</th>
+                        <th colspan="5">Gewerke</th>
+                    </tr>
+                    <tr>
+                        <td>Fachgruppen</td>
+                        <td>Gesamtfahrzeug</td>
+                        <td>Vorseriencenter </td>
+                        <td>Projektmanagement </td>
+                        <td>Industrialisierung </td>
+                    </tr>
+                    <tr>
+                        <td><%=posts.basisinfo.oe%></td>
+                        <td><%=posts.basisinfo.kunde%> </td>
+                        <td><%=posts.basisinfo.projekt%> </td>
+                        <td><%=iterateHeader(posts.basisinfo.gewerke.fachgruppen)%></td>
+                        <td><%=iterateHeader(posts.basisinfo.gewerke.gesamtfahrzeug)%></td>
+                        <td><%=posts.basisinfo.gewerke.vorseriencenter%></td>
+                        <td><%=posts.basisinfo.gewerke.projektmanagement%></td>
+                        <td><%=posts.basisinfo.gewerke.industrialisierung%></td>
+
+
+                    </tr>
+
+
+
+                </table>
+
+
+            </div>
+            <div class="tab">
+                <div style="text-align: center">
+                    <button class="tablinks" onclick="openCity(event, 'Positiv')" style="text-align: center">Positiv</button>
+                    <button class="tablinks" onclick="openCity(event, 'Negativ')" style="text-align: center; margin-left:10px;">Negativ + Maßnahmen</button>
+                </div>
+            </div>
+
+            <div id="Positiv" class="tabcontent">
+                <h3>Positiv</h3>
+                <table class="inhalt">
+                    <%=iteratePositiv(posts.positiv)%>
+                </table>
+            </div>
+
+            <%const loop = (obj) => {%>
+
+            <%for (var i in obj) {%>
+
+                <% var object = obj[i]%>
+                <%if (object.kommentar1 !== " " || object.kommentar2 !== " " || object.kommentar3 !== " " ||object.kommentar4 !== " "|| object.kommentar5 !== " " ) {%>
+                <tr class="head" style="cursor: pointer"><td colspan="2"><h4 style="float:left"><%=object.titel%></h4><a onclick=""><img class="plus-button" src="images/plusbutton.svg" style="cursor:pointer;" /></a></td></tr>
+                <% }else { %>
+                <tr class="head"><td colspan="2"><h4 style="float:left"><%=object.titel%></h4></td></tr>
+                <%}%>
+                <% for(var z=1; z<Object.keys(object).length; z+=11) { %>
+                    <% var count = 0;%>
+                    <%if(object[Object.keys(object)[z]] !=" ") {%>
+
+                    <tr class="hide"><td><%=object[Object.keys(object)[z]]%></td>
+                        <%}%>
+                        <%for(var y=z+1; y<z+11; y++) {%>
+
+                        <%if(object[Object.keys(object)[y]] != " " && count == 0) {%>
+                        <td><p><%=object[Object.keys(object)[y]]%></p>
+                            <%  count++;%>
+                            <%continue;%>
+                            <%}%>
+                            <%if(object[Object.keys(object)[y]] != " " && count != 0) {%>
+                            <p><%=object[Object.keys(object)[y]]%></p>
+                            <%}%>
+
+                            <%}%>
+                        </td>
+                    </tr>
+                <%}%>
+
+
+            <%}%>
+
+            <%}%>
+
+
+
+            <div id="Negativ" class="tabcontent" style="display: none">
+                <table class="inhalt">
+                    <tr>
+                        <td><h3 style="text-align: center">Das würden wir anders machen</h3></td>
+                        <td><h3 style="text-align: center">Maßnahme</h3></td>
+                    </tr>
+
+                    <%=loop(posts.negativ)%>
+
+                </table>
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+    <form action="/upload-new-case/preview/push?case=<%=posts.basisinfo.projekt%>" method="post" style="text-align: center" >
+        <button id="back" type="button" onclick="window.history.back()">Zurück zur Bearbeitung</button>
+        <button id="submit" type="submit" style="margin-top: 30px;">Bestätigen</button>
+    </form>
+
+</div>
+
+
+<script>
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    $(document).ready(function() {
+        $('.inhalt tr:not(.head)').hide();
+
+        $('.inhalt tr.head').click(function() {
+
+            $(this).find('.plus-button').attr('src', function(_,value) {
+                return value === 'images/plusbutton.svg' ? 'images/minus.svg' : 'images/plusbutton.svg'
+            });
+
+            $(this).nextUntil('tr.head').slideToggle(100, function() {});
+        });
+    });
+</script>
+
+
+
+</body>

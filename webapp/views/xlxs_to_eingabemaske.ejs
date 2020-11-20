@@ -1,0 +1,539 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/eingabemaske.css">
+    <script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
+</head>
+<%- include header.ejs%>
+<div class="content">
+
+    <div id="eingabe-maske" class="tabcontent">
+        <div class="big">Neuen Eintrag erstellen</div>
+    <%if(typeof posts !== 'undefined' && Object.keys(posts).length>0 ) { %>
+        <p style="font-size: 20px;"><b>Achtung: </b> Die mit einem Sternchen gekennzeichneten Felder sind Pflichtfelder </p>
+        <form method="POST" action="/upload-new-case/preview?case=<%=posts.basisinfo.projekt%>">
+
+        <% include ./partials/messsages%>
+    <div id="maske-content">
+        <p class="heading">Basisinformationen zum Projekt</p>
+        <table class="table-basis">
+        <div class="projekt-basis-info">
+            <tr>
+                <th></th>
+                <% if (typeof errors !== 'undefined') {%>
+                    <th class="error <%= errors.Fachgruppen ? 'error-invalid' : '' %>">Fachgruppen*</th>
+                    <%} else {%>
+                <th>Fachgruppen*</th>
+                    <%}%>
+
+                <% if (typeof errors !== 'undefined') {%>
+                    <th class="error <%= errors.Gesamtfahrzeug ? 'error-invalid' : '' %>">Gesamtfahrzeug*</th>
+                <%} else {%>
+                    <th>Gesamtfahrzeug*</th>
+                <%}%>
+                <th></th>
+            </tr>
+            <tr>
+            <td>
+                <p><label for="oe">OE*</label></p>
+                    <%if (posts.basisinfo.oe !== " ") { %>
+                        <% if (typeof errors !== 'undefined') {%>
+                            <input  class="form-field <%= errors.OE ? 'form-field-invalid' : '' %>" type="text" id="oe" name="oe" value="<%=posts.basisinfo.oe%>" style="width: 100%">
+                        <%} else {%>
+                        <input  type="text" id="oe" name="oe" value="<%=posts.basisinfo.oe%>" style="width: 100%">
+                        <%}%>
+
+                    <%} else {%>
+                        <% if (typeof errors !== 'undefined') {%>
+                            <input class="form-field <%= errors.OE ? 'form-field-invalid' : '' %>" type="text" id="oe" name="oe" placeholder="OE eingeben" style="width: 100%">
+                        <%} else {%>
+                            <input  type="text" id="oe" name="oe" placeholder="OE eingeben" style="width: 100%">
+                        <%}%>
+                    <% } %>
+               </td>
+                <td>
+                <p>  <label for="ausstattung">Austattung: </label>       </p>
+                    <select id="ausstattung" name="ausstattung">
+
+                        <%if (posts.basisinfo.gewerke.fachgruppen.ausstattung !== " ") { %>
+                        <option hidden selected><%=posts.basisinfo.gewerke.fachgruppen.ausstattung%></option>
+                        <%} else {%>
+                            <option hidden disabled selected></option>
+                        <% } %>
+                        <option >Cockpit</option>
+                        <option >Fahrzeugsicherheit</option>
+                        <option >Sitze</option>
+                        <option >Innenverkleidungen</option>
+                        <option >Klimatisierung</option>
+                        <option >Türverkleidungen</option>
+                        <option >ALLE</option>
+                    </select>
+                    <img src="/images/cross.svg" onclick="deselectAusstattung()" />
+            </td>
+                <td>
+                    <p><label for="steuerung">Steuerung:</label> </p>
+                        <select id="steuerung" name="steuerung">
+                            <%if (posts.basisinfo.gewerke.gesamtfahrzeug.steuerung !== " ") { %>
+                            <option hidden selected><%=posts.basisinfo.gewerke.gesamtfahrzeug.steuerung%></option>
+                            <%} else {%>
+                                <option hidden disabled selected></option>
+                            <% } %>
+                            <option >Typbegleitung</option>
+                            <option >Absicherungsmanagement</option>
+                            <option >Versuchsträgermanagement</option>
+                            <option >DMU/ Zonenmanagement</option>
+                            <option >Fahrtenkoordination</option>
+                            <option >ALLE</option>
+                        </select>
+                        <img  src="/images/cross.svg" onclick="deselectSteuerung()" />
+                </td>
+                <td>
+                    <p><label for="vorseriencenter">Vorseriencenter</label></p>
+                    <select id="vorseriencenter" name="vorseriencenter">
+                        <%if (posts.basisinfo.gewerke.vorseriencenter !== " ") { %>
+                        <option hidden selected><%=posts.basisinfo.gewerke.vorseriencenter%></option>
+                        <%} else {%>
+                            <option hidden disabled selected>  </option>
+                        <% } %>
+                        <option >Arbeitsvorbereitung</option>
+                        <option >Virtuelle Absicherung</option>
+                        <option >Konzeptentwicklung</option>
+                        <option >Beschaffung</option>
+                        <option >Logistik</option>
+                        <option >Aufbau ZP5</option>
+                        <option >Montage ZP8</option>
+                        <option >Qualitätssicherung (ZP8)</option>
+                        <option >ALLE</option>
+                    </select>
+                    <img  src="/images/cross.svg" onclick="deselectVorseriencenter()" />
+                </td>
+            </tr>
+                <tr>
+                <td>
+                    <p><label for="kunde">Kunde*</label></p>
+                    <% if (typeof errors !== 'undefined') {%>
+                    <select  class="form-field <%= errors.Kunde ? 'form-field-invalid' : '' %>" id="kunde" name="kunde">
+                        <%} else {%>
+                        <select id="kunde" name="kunde" style="width: 100%">
+                            <%}%>
+                            <%if (posts.basisinfo.kunde !== " ") { %>
+                            <option hidden selected><%=posts.basisinfo.kunde%></option>
+                            <%} else {%>
+                                <option hidden disabled selected></option>
+                            <% } %>
+
+                            <option>Volkswagen AG</option>
+                            <option >Daimler AG</option>
+                            <option >BMW AG</option>
+                            <option >Audi AG</option>
+                            <option >Dr. Ing. h.c. F. Porsche AG</option>
+                            <option >Valeo Schalter und Sensoren GmbH</option>
+                            <option >MAN Truck & Bus AG</option>
+                            <option >IAV S.A.S.U.</option>
+                            <option >Mercedes-AMG GmbH</option>
+                            <option >Mitsubishi Motors Corporation</option>
+                            <option >IAV Co., Ltd.</option>
+                            <option >BMW  Motoren GmbH</option>
+                            <option >CLAAS E-Systems KGaA mbH & Co KG</option>
+                            <option >NISSAN Motor Co., Ltd.</option>
+                            <option >Preh Car Connect GmbH</option>
+                            <option >IAV Automotive Engineering Inc.</option>
+                            <option >IAV Automotive Engineering</option>
+                            <option >NIRA Dynamics AB</option>
+                            <option >ISUZU Motors Limited</option>
+                            <option >CLAAS Selbstfahrende</option>
+                            <option >Volkswagen Osnabrück GmbH</option>
+                            <option >Automobili Lamborghini S.p.A.</option>
+                            <option >PSA Automobiles S.A..</option>
+                            <option >PSA Automobiles S.A..</option>
+                            <option >Claas Tractor SAS</option>
+                            <option >Schaeffler Technologies AG & Co. KG</option>
+                            <option >BMW M GmbH</option>
+                            <option >Conti Temic microelectronic GmbH</option>
+                            <option >WABCO GmbH</option>
+                            <option >Robert Bosch GmbH</option>
+                            <option >LG Electronics Deutschland GmbH</option>
+                            <option >Projektträger Jülich</option>
+                            <option >SEAT, S.A.</option>
+                            <option >IAV U.K. Ltd.</option>
+                            <option >Volkswagen Sachsen GmbH</option>
+                            <option >Scania CV AB (publ)</option>
+                            <option >Hitachi Automotive Systems</option>
+                            <option >VDI/VDE Innovation + Technik GmbH</option>
+                            <option >ZF Friedrichshafen AG</option>
+                            <option >Liebherr Machines Bulle S.A.</option>
+                            <option >European Commission</option>
+                            <option >Bugatti Engineering GmbH</option>
+                            <option >ŠKODA AUTO a.s.</option>
+                            <option >CADEA GmbH</option>
+                            <option >KOCH Consulting + Export</option>
+                            <option >Mianyang Xinchen Engine Co., Ltd.</option>
+                            <option >ETAS GmbH</option>
+                            <option >Continental Automotive GmbH</option>
+                            <option >Tata Motors Limited</option>
+                            <option >Honda R&D Co., Ltd.</option>
+                            <option >Hyundai Motor Company Headquarter</option>
+                            <option >GETRAG B.V. & Co. KG</option>
+                            <option >GKN Driveline International GmbH</option>
+                            <option >Toyota Motor Corporation</option>
+                            <option >Continental Reifen Deutschland GmbH</option>
+                            <option >Sächsisches Staatsministerium für</option>
+                            <option >IAV Fahrzeugsicherheit</option>
+                            <option >Volvo Personvagnar Aktiebolag</option>
+                            <option >Yanmar Co., Ltd.</option>
+                            <option >Automotive & Industrial</option>
+                            <option >SAIC Volkswagen</option>
+                            <option >Volkswagen do Brasil Indústria</option>
+                            <option >Subaru Corporation</option>
+                            <option >Tenneco GmbH</option>
+                            <option >MAN Truck & Bus Österreich GesmbH</option>
+                            <option >BASF Catalyst Germany GmbH</option>
+                        </select>
+                    </select>
+                </td>
+                <td>
+                    <p><label for="karosserie">Karosserie:</label>  </p>
+                        <select id="karroserie" name="karosserie">
+
+                            <%if (posts.basisinfo.gewerke.fachgruppen.karosserie !== " ") { %>
+                            <option hidden selected><%=posts.basisinfo.gewerke.fachgruppen.karosserie%></option>
+                            <%} else {%>
+                                <option hidden disabled selected></option>
+                            <% } %>
+                            <option >Rohbau</option>
+                            <option >Oberflächen und Korrosionsschutz</option>
+                            <option >Stoßfänger KU-Montageträger</option>
+                            <option >Anbauteile</option>
+                            <option >Klappen</option>
+                            <option >Türen</option>
+                            <option >Dachsysteme Schließsysteme</option>
+                            <option >ALLE</option>
+                        </select>
+                        <img  src="/images/cross.svg" onclick="deselectKarosserie()" />
+                </td>
+                <td>
+                    <p><label for="absicherung">Absischerung:</label>   </p>
+                        <select id="absicherung" name="absicherung">
+                            <%if (posts.basisinfo.gewerke.gesamtfahrzeug.absicherung !== " ") { %>
+                            <option hidden selected><%=posts.basisinfo.gewerke.gesamtfahrzeug.absicherung%></option>
+                            <%} else {%>
+                                <option hidden disabled selected></option>
+                            <% } %>
+                            <option >Akustik</option>
+                            <option >Klappern</option>
+                            <option >Dauererprobung</option>
+                            <option >Betriebsfestigkeit</option>
+                            <option >Physische Gesamtfahrzeug-absicherung</option>
+                            <option >Geometrische und virtuelle Absicherung</option>
+                            <option >Energiemanamgement</option>
+                            <option >ALLE</option>
+                        </select>
+                        <img  src="/images/cross.svg" onclick="deselectAbsicherung()" />
+                </td>
+                <td>
+                    <p><label for="projektmanagement">Projektmanagement*</label></p>
+                        <% if (typeof errors !== 'undefined') {%>
+                        <select  class="form-field <%= errors.Projektmanagement ? 'form-field-invalid' : '' %>" id="projektmanagement" name="projektmanagement">
+                            <%} else {%>
+                            <select id="projektmanagement" name="projektmanagement">
+                                <%}%>
+                                <%if (posts.basisinfo.gewerke.projektmanagement !== " ") { %>
+                                <option hidden selected><%=posts.basisinfo.gewerke.projektmanagement%></option>
+                                <%} else {%>
+                                    <option hidden disabled selected></option>
+                                <% } %>
+                                <option >Produktmanagement</option>
+                                <option >Projektleitung</option>
+                                <option >Qualitätssicherung</option>
+                                <option >Problemmanagemement</option>
+                                <option >ALLE</option>
+                            </select>
+                        </select>
+                        <img  src="/images/cross.svg" onclick="deselectProjektmanagement()" />
+                </td>
+
+<!--                <td> </td>-->
+<!--                <td> </td>-->
+<!--                <td><label for="industrialisierung">Industrialisierung</label> </td>-->
+            </tr>
+
+            <tr>
+                <td>
+                    <p> <label for="projekt">Projekt*</label></p>
+                    <%if (posts.basisinfo.projekt !== " ") { %>
+                        <% if (typeof errors !== 'undefined') {%>
+                    <input  class="form-field <%= errors.Projekt ? 'form-field-invalid' : '' %>" type="text" id="projekt" name="projekt" value="<%=posts.basisinfo.projekt%>" style="width: 100%">
+                        <%} else {%>
+                    <input  type="text" id="projekt" name="projekt" value="<%=posts.basisinfo.projekt%>" style="width: 100%">
+                        <%}%>
+
+                    <%} else {%>
+                        <% if (typeof errors !== 'undefined') {%>
+                        <input class="form-field <%= errors.Projekt ? 'form-field-invalid' : '' %>" type="text" id="projekt" name="projekt" placeholder="Projektname eingben" style="width: 100%">
+                            <%} else {%>
+                        <input  type="text" id="projekt" name="projekt" placeholder="Projektname eingeben" style="width: 100%">
+                            <%}%>
+                    <% } %>
+                </td>
+                <td>
+
+                    <p><label for="elektrikelektronik">ElektrikElektronik:</label>    </p>
+                    <select id="elektrikelektronik" name="elektrikelektronik">
+
+                        <%if (posts.basisinfo.gewerke.fachgruppen.elektrikelektronik !== " ") { %>
+                        <option hidden selected><%=posts.basisinfo.gewerke.fachgruppen.elektrikelektronik%></option>
+                        <%} else {%>
+                            <option hidden disabled selected></option>
+                        <% } %>
+                        <option >E/E-Architektur und Vernetzung</option>
+                        <option >Bordnetze</option>
+                        <option >Instrumentierung / Infotainment</option>
+                        <option >Komfortsysteme HW-/SW-Entwicklung</option>
+                        <option >Energie und HV-System</option>
+                        <option >E-Antrieb</option>
+                        <option >Licht und Sicht</option>
+                        <option >ALLE</option>
+                    </select>
+                    <img  src="/images/cross.svg" onclick="deselectElektrikelektronik()" />
+                </td>
+                <td>  <p><label for="weitere">Weitere:</label></p>
+                        <select id="weitere" name="weitere">
+                            <%if (posts.basisinfo.gewerke.gesamtfahrzeug.weitere !== " ") { %>
+                            <option hidden selected><%=posts.basisinfo.gewerke.gesamtfahrzeug.weitere%></option>
+                            <%} else {%>
+                                <option hidden disabled selected></option>
+                            <% } %>
+                            <option >SOTIF/ FuSi</option>
+                            <option >Design</option>
+                            <option >Konzeptentwicklung</option>
+                            <option >Strak</option>
+                            <option >Aerodynamik</option>
+                            <option >EMV</option>
+                            <option >Fahrleistungen und Verbrauch</option>
+                            <option >Gewichtsmanagement</option>
+                            <option >Wettbewerbsanalyse</option>
+                            <option >Typprüfung</option>
+                            <option >Werkstatt</option>
+                            <option >ALLE</option>
+                        </select>
+                        <img  src="/images/cross.svg" onclick="deselectWeitere()" />
+
+                    </td>
+                <td>
+                    <p><label for="industrialisierung">Industrialisierung</label></p>
+                    <select id="industrialisierung" name="industrialisierung">
+                        <%if (posts.basisinfo.gewerke.industrialisierung !== " ") { %>
+                        <option hidden selected><%=posts.basisinfo.gewerke.industrialisierung%></option>
+                        <%} else {%>
+                            <option hidden disabled selected>  </option>
+                        <% } %>
+                        <option >Beschaffung</option>
+                        <option >Qualitätssicherung / Lieferanten</option>
+                        <option >Produktionsplanung</option>
+                        <option >ALLE</option>
+                    </select>
+                    <img  src="/images/cross.svg" onclick="deselectIndustrialisierung()" />
+                </td>
+                <tr>
+
+                <td></td>
+                <td>
+                    <p><label for="fahrwerk">Fahrwerk:</label>    </p>
+                        <select id="fahrwerk" name="fahrwerk">
+
+                            <%if (posts.basisinfo.gewerke.fachgruppen.fahrwerk !== " ") { %>
+                            <option hidden selected><%=posts.basisinfo.gewerke.fachgruppen.fahrwerk%></option>
+                            <%} else {%>
+                                <option hidden disabled selected></option>
+                            <% } %>
+                            <option >Fahrwerk vorne</option>
+                            <option >Lenksystem</option>
+                            <option >Bremssystem</option>
+                            <option >Fahrwerk hinten</option>
+                            <option >Kraftstoffanlage</option>
+                            <option >ALLE</option>
+                        </select>
+                        <img  src="/images/cross.svg" onclick="deselectFahrwerk()" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <p><label for="fahrerassistenz">Fahrerassistenz:</label></p>
+                        <select id="fahrerassistenz" name="fahrerassistenz">
+                            <%if (posts.basisinfo.gewerke.fachgruppen.fahrerassistenz !== " ") { %>
+                            <option hidden selected><%=posts.basisinfo.gewerke.fachgruppen.fahrerassistenz%></option>
+                            <%} else {%>
+                                <option hidden disabled selected></option>
+                            <% } %>
+                            <option >Bahnplanung und Regelung</option>
+                            <option >Digitale Karte</option>
+                            <option >Lokalisierung</option>
+                            <option >Umfeldwahrnehmung</option>
+                            <option >Driving Manager</option>
+                            <option >Kollisionsvermeidung</option>
+                            <option >manuelles Fahren</option>
+                            <option value="alle">ALLE</option>
+                        </select>
+                        <img  src="/images/cross.svg" onclick="deselectFahrerassistenz()" />
+                </td>
+            </tr>
+            <tr>
+
+                <td></td>
+                <td>
+                    <p><label for="antrieb">Antrieb:</label>     </p>
+                        <select id="antrieb" name="antrieb">
+                            <%if (posts.basisinfo.gewerke.fachgruppen.antrieb !== " ") { %>
+                            <option hidden selected><%=posts.basisinfo.gewerke.fachgruppen.antrieb%></option>
+                            <%} else {%>
+                                <option hidden disabled selected></option>
+                            <% } %>
+                            <option >Otto Motor</option>
+                            <option >Diesel Motor</option>
+                            <option >Kraftstoff/ Ansaugung/ Kühlung</option>
+                            <option >ZP3/ ZP7 Getriebe</option>
+                            <option >Aggregate-Elektrik</option>
+                            <option >Abgasanlage</option>
+                            <option >ALLE</option>
+                        </select>
+                        <img  src="/images/cross.svg" onclick="deselectAntrieb()" />
+                </td>
+            </tr>
+
+        </div>
+        </table>
+
+        <p class="heading">Was ist gut gelaufen?</p>
+        <div class="positiv">
+
+        <%const iteratePositiv = (obj) => {%>
+        <%for (var i in obj) {%>
+            <% var object = obj[i]%>
+            <p class="comment"> <%=object.titel%> </p>
+            <% for(var z=1; z<Object.keys(object).length; z++) { %>
+            <%if(object[Object.keys(object)[z]] !=" ") {%>
+            <textarea id="kommentar" name="<%='poskommentar'+i%>" placeholder="<%='Kommentar'+ z%>" style="width: 100%"><%=object[Object.keys(object)[z]]%></textarea><br>
+            <%} else {%>
+            <textarea id="kommentar" name="<%='poskommentar'+i%>" placeholder="<%='Kommentar'+ z%>" style="width: 100%"></textarea><br>
+            <%}%>
+        <%}%>
+        <%}%>
+        <%}%>
+        <%=iteratePositiv(posts.positiv)%>
+        </div>
+        <p class="heading">Was ist schlecht gelaufen und welche Maßnahmen haben wir ergriffen? </p>
+        <div class="negativ">
+        <%const interateNegativ = (obj) => {%>
+        <%for (var i in obj) {%>
+            <% var countKommentar = 1;%>
+            <% var object = obj[i]%>
+           <p class="comment"><%=object.titel%></p>
+            <table style="width: 100%;">
+            <% for(var z=1; z<Object.keys(object).length; z+=11) { %>
+                    <% var countHeader = 0;%>
+                    <% var countMassnahme = 1;%>
+                <%if(object[Object.keys(object)[z]] !=" ") {%>
+                    <tr>
+                        <th rowspan="10"><textarea id="kommentar" name="<%='nevkommentar'+i%>" placeholder="<%='Kommentar'+ countKommentar%>" style="width: 100%;height: 100%"><%=object[Object.keys(object)[z]]%></textarea></th>
+
+                    <%} else {%>
+                    <tr>
+                        <th rowspan="10"><textarea id="kommentar" name="<%='nevkommentar'+i%>" placeholder="<%='Kommentar'+ countKommentar%>" style="width: 100%;height: 100%"></textarea></th>
+
+                        <%}%>
+                    <%for(var y=z+1; y<z+11; y++) {%>
+
+                        <%if(object[Object.keys(object)[y]] != " " && countHeader == 0) {%>
+                        <td><textarea id="massnhame" name="<%='massnahme'+i+'_kommentar'+countKommentar%>" placeholder="<%='Massnahme'+countKommentar+'_'+countMassnahme%>" style="width: 100%"><%=object[Object.keys(object)[y]]%></textarea></td>
+                    </tr>
+                        <%  countHeader++;%>
+                        <%  countMassnahme++;%>
+                        <%continue;%>
+                        <%}%>
+                        <%if(object[Object.keys(object)[y]] == " " && countHeader == 0) {%>
+                    <td><textarea id="massnhame" name="<%='massnahme'+i+'_kommentar'+countKommentar%>" placeholder="<%='Massnahme'+countKommentar+'_'+countMassnahme%>" style="width: 100%"></textarea></td>
+                    </tr>
+                    <%  countHeader++;%>
+                    <%  countMassnahme++;%>
+                    <%continue;%>
+                    <%}%>
+                        <%if(object[Object.keys(object)[y]] != " " && countHeader != 0) {%>
+                    <tr>
+                        <td><textarea id="massnhame" name="<%='massnahme'+i+'_kommentar'+countKommentar%>" placeholder="<%='Massnahme'+countKommentar+'_'+countMassnahme%>" style="width: 100%"><%=object[Object.keys(object)[y]]%></textarea></td>
+                    </tr>
+                        <%}%>
+                        <%if(object[Object.keys(object)[y]] == " " && countHeader != 0) {%>
+                    <tr>
+                        <td><textarea id="massnhame" name="<%='massnahme'+i+'_kommentar'+countKommentar%>" placeholder="<%='Massnahme'+countKommentar+'_'+countMassnahme%>" style="width: 100%"></textarea></td>
+                    </tr>
+                    <%}%>
+                    <%  countMassnahme++;%>
+                        <%}%>
+                    <%  countKommentar++;%>
+            <%}%>
+            </table>
+        <%}%>
+        <%}%>
+
+
+        <%=interateNegativ(posts.negativ)%>
+        </div>
+    </div>
+    <br>
+        <div style="width: 14%; margin:0 auto;">
+            <input id="submit" type="submit" value="zur Vorschau">
+        </div>
+</form>
+    </div>
+
+<%}else {%>
+    <div style="padding-top:10%">
+        <img src="/images/attention.svg" style="width: 15%;height: 15%"/>
+    <p>Die xlsm-Datei kann leider nicht gelesen werden! Es entspricht nicht der IAV-<a href="documents/Erfassung LL.xlsm" download=>Vorlage</a> für Lesson-Learned-Fälle.</p>
+        <a href="/index"><button type="button">Zurück zur Startseite</button></a>
+    </div>
+    <%}%>
+</div>
+<script>
+
+    function deselectAusstattung() {
+        document.getElementById("ausstattung").selectedIndex = "-1";
+    }
+    function deselectKarosserie() {
+        document.getElementById("karroserie").selectedIndex = "-1";
+    }
+    function deselectElektrikelektronik() {
+        document.getElementById("elektrikelektronik").selectedIndex = "-1";
+    }
+
+    function deselectFahrwerk() {
+        document.getElementById("fahrwerk").selectedIndex = "-1";
+    }
+
+    function deselectFahrerassistenz() {
+        document.getElementById("fahrerassistenz").selectedIndex = "-1";
+    }
+    function deselectAntrieb() {
+        document.getElementById("antrieb").selectedIndex = "-1";
+    }
+    function deselectSteuerung() {
+        document.getElementById("steuerung").selectedIndex = "-1";
+    }
+    function deselectAbsicherung() {
+        document.getElementById("absicherung").selectedIndex = "-1";
+    }
+    function deselectWeitere() {
+        document.getElementById("weitere").selectedIndex = "-1";
+    }
+    function deselectVorseriencenter() {
+        document.getElementById("vorseriencenter").selectedIndex = "-1";
+    }
+    function deselectProjektmanagement() {
+        document.getElementById("projektmanagement").selectedIndex = "-1";
+    }
+    function deselectIndustrialisierung() {
+        document.getElementById("industrialisierung").selectedIndex = "-1";
+    }
+
+
+
+</script>

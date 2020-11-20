@@ -1,0 +1,147 @@
+{
+	"Basisinfo" : {
+		"OE" : "TP",
+		"Kunde" : "Daimler AG",
+		"Projekt" : "Daimler Feldmaßnahmen OM651/642",
+		"Gewerke" : {
+			"Fachgruppen" : {
+				"Ausstattung" : " ",
+				"Karosserie" : " ",
+				"ElektrikElektronik" : " ",
+				"Fahrwerk" : " ",
+				"Fahrerassistenz" : " ",
+				"Antrieb" : "Diesel Motor"
+				},
+			"Gesamtfahrzeug" : {
+				"Steuerung" : " ",
+				"Absicherung" : "Dauererprobung",
+				"Weitere" : " "
+				},
+			"Vorseriencenter" : " ",
+			"ProjektManagement" : "ALLE",
+			"Industrialisierung" : " "
+			}
+		},
+	"positiv" : {
+		"Thema1" : {
+			"Titel" : "1 Zusammenarbeit im Projekt / Teamspirit und Konfliktkultur",
+			"Kommentar1" : " "
+			},
+		"Thema2" : {
+			"Titel" : "2 Zusammenarbeit mit dem Kunden / Spirit und Konfliktkultur",
+			"Kommentar1" : "Es fand eine verlässliche und vertrauensvolle Zusammenarbeit statt. "
+			},
+		"Thema3" : {
+			"Titel" : "3 Projektorganisation und Projektmanagement generell",
+			"Kommentar1" : " "
+			},
+		"Thema4" : {
+			"Titel" : "4 Projektkommunikation",
+			"Kommentar1" : "Kommunikationswege sind klar geregelt und Besprechungslandschaft ist eindeutig.",
+			"Kommentar2" : "Workshop war eine gute Kommunikationsmaßnahme, um die Probleme zu identifizieren und zu lösen."
+			},
+		"Thema5" : {
+			"Titel" : "5 Ziele und Projektausrichtung",
+			"Kommentar1" : " "
+			},
+		"Thema6" : {
+			"Titel" : "6 Abläufe, Prozesse und Qualitätssicherung",
+			"Kommentar1" : "Datensatzmanagement: XINGU und Appdesk in Kombination sind eine gute Art der Datenabgabe, sowie des DS-Vergleichs. Eine zusätzliche Ablage der DS auf dem Rechner ist nicht mehr erforderlich, da die DS direkt in INCA exportiert werden können. Die Auswahl der Varianten über Cluster verbessert die Übersichtlichkeit."
+			},
+		"Thema7" : {
+			"Titel" : "7 Rollen und Aufgabenverteilung",
+			"Kommentar1" : " "
+			},
+		"Thema8" : {
+			"Titel" : "8 Ressourcen",
+			"Kommentar1" : " "
+			},
+		"Thema9" : {
+			"Titel" : "9 Führung und Motivation",
+			"Kommentar1" : " "
+			},
+		"Thema10" : {
+			"Titel" : "10 Entwicklungsverständnis und Erstellung Liefergegenstände",
+			"Kommentar1" : " "
+			}
+		},
+	"negativ" : {
+		"Thema1" : {
+			"Titel" : "1 Zusammenarbeit im Projekt / Teamspirit und Konfliktkultur",
+			"Kommentar1" : " ",
+			"Massnahme1" : " "
+			},
+		"Thema2" : {
+			"Titel" : "2 Zusammenarbeit mit dem Kunden / Spirit und Konfliktkultur",
+			"Kommentar1" : " ",
+			"Massnahme1" : " "
+			},
+		"Thema3" : {
+			"Titel" : "3 Projektorganisation und Projektmanagement generell",
+			"Kommentar1" : "Ineffizientes Berichtswesen / Dokumente zur Projektsteuerung überlappend",
+			"Massnahme1_1" : "- Es müsste eine zentrale Datenbank für alle wichtigen Informationen",
+			"Massnahme1_2" : "- Definition, welches Dokument für welche Information verbindlich ist (Master Information) und wer für welches Dokument verantwortlich ist ",
+			"Massnahme1_3" : "- DMS vs. Excel auf Erprobungen",
+			"Massnahme1_4" : "- Tools, Dokumente, Prozesse weiter harmonisieren",
+			"Massnahme1_5" : "- Applikationsprozess und WBS müssen in naher Zukunft in eine DB",
+			"Massnahme1_6" : "- TP-D1 entwickelt mit SAJAMA ein Tool (weiter ausbauen)",
+			"Massnahme1_7" : "- Können Dokumente in Plink für automatische Aktualisierungen verlinkt werden?",
+			"Massnahme1_8" : "- Können Dokument in Sharepoint für automatische Aktualisierungen verlinkt werden?",
+			"Kommentar2" : "Review ernst nehmen",
+			"Massnahme2_1" : "Die letzten Review Themen wurden nicht weiter überprüft“",
+			"Kommentar3" : "Datenablage im Projekt ist nicht klar oder eindeutig",
+			"Massnahme3_1" : "- Ablageorte erarbeiten mit dem Ziel einer eindeutigen Ordnerstruktur ",
+			"Massnahme3_2" : "- Dokumentation der neuen Ordnerstruktur",
+			"Massnahme3_3" : "- Verbindliche Ansage durch PL: Dokumente in PLink sind obligatorisch mit Änderungskommentaren einzuchecken"
+			},
+		"Thema4" : {
+			"Titel" : "4 Projektkommunikation",
+			"Kommentar1" : "Gewerkeübergreifende Kommunikation",
+			"Massnahme1_1" : "- Gegenseitiges Verständnis durch Information erzeugen und pflegen: Kick-Off-Meeting, (Zwischen-) Reviews",
+			"Massnahme1_2" : "- Verantwortung für die interdisziplinäre Kommunikation (zwischen den Gewerken) liegt bei den TPLs.",
+			"Massnahme1_3" : "- RASI für TPL/Mitarbeiter erforderlich (anschieben durch PL, ausfüllen durch TPL)",
+			"Massnahme1_4" : "- Falls direkte Kommunikation zwischen Sachbearbeitern verschiedener Gewerke erforderlich: Durch TPL zu organisieren",
+			"Kommentar2" : "Durchführung von Meetings",
+			"Massnahme2_1" : " ",
+			"Kommentar3" : "Besprechungsdisziplin",
+			"Massnahme3_1" : " "
+			},
+		"Thema5" : {
+			"Titel" : "5 Ziele und Projektausrichtung",
+			"Kommentar1" : " ",
+			"Massnahme1" : " "
+			},
+		"Thema6" : {
+			"Titel" : "6 Abläufe, Prozesse und Qualitätssicherung",
+			"Kommentar1" : "DMS wird nicht konsequent genutzt",
+			"Massnahme1_1" : "- Sensibilisierung MA DMS zu aktualisieren / Für DMS werben: Einheitlichen Regelkatalog erstellen=>  Alle/TPLs/PLs",
+			"Massnahme1_2" : "Toolunterstützung: Eingabe wird über digitales System/ App unterstützt/ ersetzt (Touchscreen an Schlüsselkasten „Smarte Schlüsselschränke“, IAV Karte an Scanner) => Steuerkreis DMS",
+			"Massnahme1_3" : "- SIM Karte oder Smartphone für jeden Kollegen => Linie – bereits gelöst"
+			},
+		"Thema7" : {
+			"Titel" : "7 Rollen und Aufgabenverteilung",
+			"Kommentar1" : " ",
+			"Massnahme1" : " "
+			},
+		"Thema8" : {
+			"Titel" : "8 Ressourcen",
+			"Kommentar1" : "Rollenplanung und -disposition",
+			"Massnahme1_1" : " Es muss geklärt werden, wer die Verteilung der Bedarfe übernimmt"
+			},
+		"Thema9" : {
+			"Titel" : "9 Führung und Motivation",
+			"Kommentar1" : " ",
+			"Massnahme1" : " "
+			},
+		"Thema10" : {
+			"Titel" : "10 Entwicklungsverständnis und Erstellung Liefergegenstände",
+			"Kommentar1" : "Vorhandensein von technischen Dokumentationen",
+			"Massnahme1_1" : "- Zu Projektstart pro Gewerk ein sollte Anforderungskatalog vorhanden sein",
+			"Massnahme1_2" : "- In der Angebotsphase müssen Informationen über Beistellungsliste eingefordert werden, die Voraussetzung sollte im Angebot geklärt sein",
+			"Massnahme1_3" : "- Lastenheft sollte ggf. nachgepflegt werden bzw. im Angebot entsprechend angefordert werden",
+			"Massnahme1_4" : "- Kickoff darf nicht ausfallen, Workshop muss organisiert werden",
+			"Massnahme1_5" : "- Zentrales Dokument in dem die Anforderungen pro Cluster dem Mitarbeiter zur Verfügung steht",
+			"Massnahme1_6" : "- Sinnvolle Projektsteuerungstools zur Dokumentation und Informationsverteilung nutzen"
+			}
+		}
+	}

@@ -1,0 +1,38 @@
+<head>
+<link rel="stylesheet" type="text/css" href="/css/login.css">
+    <title>Lessons Learned Datenbank Login</title>
+</head>
+<div class="picture">
+    <img src="/images/empfang.jpg" style="width: 100%;" >
+</div>
+<div class="login-page">
+    <div class="form">
+        <h1>Lessons Learned Datenbank</h1>
+        <%if (typeof logout !== 'undefined') {%>
+        <div class= "alert">
+            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+            <%=logout%>
+        </div>
+        <%}%>
+        <% include ./partials/login-messages%>
+        <form class="login-form" action="/login" method="POST" >
+            <input type="text" placeholder="Benutzername" name="username" value="<%= typeof username !='undefined' ? username : ''%>"/>
+            <input type="password" placeholder="Passwort" name="password" value="<%= typeof password !='undefined' ? password : ''%>"/>
+            <button type="submit">Anmelden</button>
+            <div class="contact-person">
+                <p style="margin-bottom: 0"><b>Bei Fragen</b></p>
+                <div style="width: 50%; float: left">
+                    <p> Reppel, Daniel (TM-F)</p>
+                    <p><a style="color: #14639e; text-decoration: none;" href = "mailto: daniel.reppel@iav.de">daniel.reppel@iav.de</a></p>
+                </div>
+                <div class="right" style="float:right; width: 50%">
+                    <p> Sulimma, Klaus (G-QM)</p>
+                    <p><a style="color: #14639e; text-decoration: none;" href = "mailto: klaus.sulimma@iav.de">klaus.sulimma@iav.de</a></p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,8 @@
+
+<form class="search-input" autocomplete="off" id="search" action="/result" method="POST">
+        <div class="autocomplete" id="fill">
+
+                <input id="myInput" type="text" placeholder="Suchbegriff hier eingeben" name="search" value="<%= typeof searchValue === 'undefined' ? '' : searchValue %>">
+                <img class="icon" src="/images/search.svg" alt="search-icon" onclick="submitSearch()">
+        </div>
+</form>

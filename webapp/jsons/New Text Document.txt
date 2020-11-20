@@ -1,0 +1,5 @@
+  <% for (var key in posts[i].Basisinfo) { %>
+                            <%if (posts[i].Basisinfo.hasOwnProperty(key)) { %>
+                        <% key %> : <%posts[i].Basisinfo[key]%>
+                            <%}%>
+                        <%}%>

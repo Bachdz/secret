@@ -1,0 +1,11 @@
+<% if (typeof errors != 'undefined') { %>
+<div class="alert">
+    <p> <b>Fehler: </b>Bitte treffen Sie einen Auswahl zu folgenden Felder :
+    <%Object.keys(errors).forEach(key => {%>
+    <b><%=key%></b>
+    <%})%>
+    </p>
+</div>
+
+
+<%}%>

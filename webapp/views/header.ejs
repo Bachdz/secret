@@ -1,0 +1,18 @@
+<link rel="stylesheet" type="text/css" href="/css/header.css">
+<div class="header">
+    <div class="container">
+        <p class="user-information">
+            <%if (typeof vorname !== 'undefined' && typeof nachname !== 'undefined') {%>
+            Sie sind als <%=vorname+ " "+nachname%>  angemeldet.  <a href="/logout" style="color: #FFFFFF">Abmelden</a>
+            <%} else { %>
+                Bitte melden Sie sich an ! <a href="/login" style="color: #FFFFFF">Anmelden</a>
+            <%}%>
+        </p>
+        <a href="/index" class="logo">
+            <img id="logo-pic" src="images/logo.svg" style="	max-width:100%;	max-height:100%;border:0;" />
+        </a>
+        <div class="navi">
+
+        </div>
+    </div>
+</div>

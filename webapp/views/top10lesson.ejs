@@ -1,0 +1,109 @@
+<!-- Swiper --><div class="lunchbox">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+
+                <div class="item-small">
+                    <div class="title">Kenntnis von Anforderungen und Zielen</div>
+                    <p class="des">Anforderungen (u.a. Kunde, Gesetze, Normen, …) und/ oder Ziele waren den Projektbeteiligten bzw. dem Angebotsteam teilweise nicht bekannt </p>
+                    <div class="box-infor-more"><a onclick="window.open('documents/Thema_Anforderung_Zielen.pdf','popup','width=700,height=700');return false;">Mehr ...</a></div>
+                </div>
+
+            </div>
+            <div class="swiper-slide">
+                <div class="item-small">
+                    <div class="title">Definition von Rollen und Verantwortlichkeiten</div>
+                    <p class="des">Rollen und Verantwortlichkeiten waren nicht eindeutig geregelt</p>
+                    <div class="box-infor-more"><a onclick="window.open('documents/Thema_Rollen_Verantwortlichkeit.pdf','popup','width=700,height=700');return false;" >Mehr ...</a></div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="item-small">
+                    <div class="title">Fehlendes Know-how</div>
+                    <p class="des">Projektmitglieder besitzen nicht das notwendige Know-how</p>
+                    <div class="box-infor-more"><a  onclick="window.open('documents/Thema_Know_How.pdf','popup','width=700,height=700');return false;" >Mehr ...</a></div>
+                </div>
+
+            </div>
+            <div class="swiper-slide">
+                <div class="item-small">
+                    <div class="title">Risikomanagement</div>
+                    <p class="des">Kein oder kein nachhaltiges Risikomanagement</p>
+                    <div class="box-infor-more"><a onclick="window.open('documents/Thema_Risiko.pdf','popup','width=700,height=700');return false;" >Mehr ...</a></div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="item-small">
+                    <div class="title">Synchronisation der Teilgewerke</div>
+                    <p class="des">Fehlende Synchronisation zwischen den Teilgewerken</p>
+                    <div class="box-infor-more"><a onclick="window.open('documents/Thema_Synchronisation.pdf','popup','width=700,height=700');return false;" >Mehr ...</a></div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="item-small">
+                    <div class="title">Integration neuer Projekt-Kollegen</div>
+                    <p class="des">Fehlende konsequente Einarbeitung von neuen Kollegen im Projekt</p>
+                    <div class="box-infor-more"><a  onclick="window.open('documents/Thema_Integration.pdf','popup','width=700,height=700');return false;" >Mehr ...</a></div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="item-small">
+                    <div class="title">Informations-verteilung</div>
+                    <p class="des">Zeitnahe und vollständige Informationsweitergabe an die Projektbeteiligten teilweise unzureichend</p>
+                    <div class="box-infor-more"><a onclick="window.open('documents/Thema_Informationsverteilung.pdf','popup','width=700,height=700');return false;" >Mehr ...</a></div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="item-small">
+                    <div class="title">Liefergegenstände</div>
+                    <p class="des">Liefergegenstände teilweise nicht bekannt und Dokumentation der Liefergegenstände verbesserungswürdig</p>
+                    <div class="box-infor-more"><a  onclick="window.open('documents/Thema_Liefergegenstaende.pdf','popup','width=700,height=700');return false;" >Mehr ...</a></div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="item-small">
+                    <div class="title">Entscheidungs-vorbereitung</div>
+                    <p class="des">Entscheidungen wurden unzureichend und wenig stringent vorbereitet und dokumentiert.</p>
+                    <div class="box-infor-more"><a onclick="window.open('documents/Thema_Entscheidungsvorbereitung.pdf','popup','width=700,height=700');return false;" >Mehr ...</a></div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="item-small">
+                    <div class="title">Tool- und Dokumenten-management</div>
+                    <p class="des">Vereinbarte Tools und das Dokumentenmanagement wurde nicht konsequent genutzt.</p>
+                    <div class="box-infor-more"><a  onclick="window.open('documents/Thema_Tool_Dokumanagement.pdf','popup','width=700,height=700');return false;" >Mehr ...</a></div>
+                </div>
+            </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>
+<script src="/js/swiper-bundle.js"></script>
+<script>
+
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        slidesPerGroup: 1,
+        loop: true,
+        grabCursor:true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+        },
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+</script>

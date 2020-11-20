@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/css/term-of-service.css">
+    <link rel="stylesheet" type="text/css" href="/css/header.css">
+    <title>Bedingungen LL-DB</title>
+</head>
+<body>
+<div class="header">
+    <div class="container">
+        <a href="/" class="logo">
+            <img src="images/logo.svg" style="	max-width:100%;	max-height:100%;border:0;" />
+        </a>
+        <div class="navi">
+        </div>
+    </div>
+</div>
+<div class="content">
+    <h2>Nutzungsbedingungen der Lessons Learned Datenbank </h2>
+    <div id="language-content">
+        <b>Inhalt und Zweck der LL-DB</b>
+        <p>Die Informationen der Datenbank sollen <br>
+            -	dem Projektverantwortlichen die Planung, Steuerung und Überwachung in Folgeprojekten erleichtern,<br>
+            -	dem Projektteam helfen, Fehler zu vermeiden und<br>
+            -	einen entsprechenden organisationsübergreifenden Wissenstransfer unterstützen.<br>
+            Der Projektverantwortliche soll die für die Ausübung seiner Rolle entsprechenden Informationen nutzen, darf diese jedoch nicht an Dritte weitergeben.<br>
+            Die Inhalte der Datenbank sind grundsätzlich vertraulich zu behandeln.
+        </p>
+        <b>Zugang zum System</b>
+        <p>Die LL-DB steht den nachfolgend genannten Rollen von IAV zur Verfügung:<br>
+            -	Executive-Projektleitern (EPL)<br>
+            -	Senior-Projektleitern (SPL)<br>
+            -	Projektleitern (PL)
+        </p>
+        <b>Einstellen von Wissen</b>
+        <p>Das Einstellen von LL-Know-how erfolgt nach bestem Wissen und Gewissen.<br>
+            Es ist sicherzustellen, dass die eingestellten Informationen nicht die Rechte anderer IAV-Mitarbeiter (etwa beleidigende Inhalte), die Rechte Dritter (etwa das Urheberrecht) oder gegen weitere Strafvorschriften (etwa durch verleumderische Inhalte), verstoßen.
+        </p>
+        <p>Jeder Eintrag in die Datenbank sollte so gestaltet sein, dass auch projektunbeteiligte Projektverantwortliche den Zusammenhang und Begriffe einordnen können.<br>
+            Fachbegriffe sind zu erläutern und Abkürzungen zu vermeiden oder zu erklären.<br>
+            Das Nennen von Personen und personenbezogener Daten ist nicht gestattet.
+        </p>
+        <b>Geheimhaltung</b>
+        <p>Der Verfasser von Einträgen ist für das Einhalten der Geheimhaltungsvorschriften verantwortlich. Im Zweifelsfall ist eine Freigabe beim Vorgesetzten einzuholen.<br>
+            Einträge zu Projektinhalten (z. B. fachliche Details zum Liefergegenstand) sind nicht erlaubt.<br>
+            Informationen, die der Geheimhaltungsstufe „streng vertraulich“ unterliegen, dürfen nicht in der LL-DB veröffentlicht werden. (Es gelten die bestehenden <a href="https://profi.iavgroup.local/pkit/go/pelement.do?id=13683&type=Method" target="_blank">Regelungen</a>.)<br>
+            In die LL-DB dürfen nur allgemeine Methodik und allgemeines (Fach-)wissen Eingang finden.
+        </p>
+        <b>Verantwortung des Einzelnen </b>
+        <p>Jeder Verfasser ist für die Rechtmäßigkeit der in die LL-DB eingestellten Informationen verantwortlich.<br>
+            Bei Unsicherheit empfehlen wir das „Vier-Augen-Prinzip“ oder die Absprache mit dem Vorgesetzten.
+        </p>
+        <b> Toolverantwortung</b>
+        <p>Der Toolverantwortliche ist nicht für die Inhalte der einzelnen Einträge, sondern nur für die organisatorische und technische Weiterentwicklung des Tools auf Unternehmensebene verantwortlich.<br>
+            Der Toolverantwortliche wird dabei von den Tool-Entwicklern unterstützt. Input zu Weiterentwicklungsmöglichkeiten kommt durch Anregungen der Nutzer sowie durch den Toolverantwortlichen identifizierte Potenziale.<br>
+        </p>
+        <b>Aktualität der Inhalte</b>
+        <p>Die Informationen in der LL-DB sind zum Zeitpunkt der jeweiligen LL-Durchführung und des Ergebniseintrags aktuell. Sie sollten jedoch immer durch den Nutzer sorgsam im Hinblick auf Aktualität und Plausibilität geprüft werden.</p>
+    </div>
+    <div class="checkbox">
+        <form action="/index" method="post" id="accept" >
+        <span> <input id="checkBox" type="checkbox" name="checkbox" onclick="showButton()"> <label for="checkbox">Ich habe die Nutzungsbedingungen gelesen und stimme diesen zu.</label></span>
+        </form>
+
+        <form action="/not-accept?true" id="not-accept" method="post" style="float:right;">
+        </form>
+    </div>
+    <div class="button-content">
+        <button type="submit" form="accept" id="acceptButton" style="display: none; float: left">Weiter</button>
+        <button type="submit" form="not-accept" id="not-acceptButton" style="float: right" >Ich stimme nicht zu</button>
+    </div>
+</div>
+
+<div class="picture">
+    <img src="/images/team.jpg" style="width: 100%;" >
+</div>
+
+
+
+
+</body>
+<script>
+    function showButton() {
+        // Get the checkbox
+        const checkBox = document.getElementById("checkBox");
+        // Get the button
+        const button = document.getElementById("acceptButton");
+
+        // If the checkbox is checked, display the button
+        if (checkBox.checked === true){
+            button.style.display = "block";
+        } else {
+            button.style.display = "none";
+        }
+    }
+</script>
+
+</html>

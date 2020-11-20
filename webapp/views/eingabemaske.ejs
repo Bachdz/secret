@@ -1,0 +1,439 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/eingabemaske.css">
+    <script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
+</head>
+<%- include header.ejs%>
+<div class="content">
+<div id="eingabe-maske" class="tabcontent">
+    <div class="big">Neuen Eintrag erstellen</div>
+
+    <p style="font-size: 20px;"><b>Achtung: </b> Die mit einem Sternchen gekennzeichneten Felder sind Pflichtfelder </p>
+    <form method="POST" action="/upload-new-case/preview" id="post-form">
+
+
+
+        <div id="maske-content">
+            <p class="heading">Basisinformationen zum Projekt</p>
+            <table class="table-basis">
+            <div class="projekt-basis-info">
+                <tr>
+                    <th></th>
+                    <th>Fachgruppen*</th>
+                    <th>Gesamtfahrzeug*</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>
+                   <p><label for="oe">OE*</label></p>
+                    <input type="text" id="oe" name="oe" style="width: 100%"><br>
+                    </td>
+                    <td>
+                        <p>    <label for="ausstattung">Austattung: </label></p>
+                        <select  id="ausstattung" name="ausstattung">
+                            <option hidden disabled selected></option>
+                            <option>Cockpit</option>
+                            <option>Fahrzeugsicherheit</option>
+                            <option>Sitze</option>
+                            <option>Innenverkleidungen</option>
+                            <option>Klimatisierung</option>
+                            <option>Türverkleidungen</option>
+                            <option>ALLE</option>
+                        </select>
+                        <img src="/images/cross.svg" onclick="deselectAusstattung()" />
+                    </td>
+                    <td>
+                        <p><label for="steuerung">Steuerung: </label><p/>
+                            <select id="steuerung" name="steuerung">
+                                <option hidden disabled selected> </option>
+                                <option >Typbegleitung</option>
+                                <option >Absicherungsmanagement</option>
+                                <option >Versuchsträgermanagement</option>
+                                <option >DMU/ Zonenmanagement</option>
+                                <option >Fahrtenkoordination</option>
+                                <option>ALLE</option>
+                            </select>
+                            <img  src="/images/cross.svg" onclick="deselectSteuerung()" />
+                    </td>
+                    <td>
+                        <p><label for="vorseriencenter">Vorseriencenter</label> <p/>
+                        <select id="vorseriencenter" name="vorseriencenter">
+                            <option hidden disabled selected> </option>
+                            <option >Arbeitsvorbereitung</option>
+                            <option >Virtuelle Absicherung</option>
+                            <option >Konzeptentwicklung</option>
+                            <option >Beschaffung</option>
+                            <option >Logistik</option>
+                            <option >Aufbau ZP5</option>
+                            <option >Montage ZP8</option>
+                            <option >Qualitätssicherung (ZP8)</option>
+                            <option >ALLE</option>
+                        </select>
+                        <img  src="/images/cross.svg" onclick="deselectVorseriencenter()" />
+
+                    </td>
+<!--                    <th rowspan="2"><label for="kunde">Kunde *</label></th>-->
+<!--                    <th rowspan="2"></th>-->
+                </tr>
+                <tr>
+                    <td>
+                    <p><label for="kunde">Kunde*</label></p>
+                    <select  id="kunde" name="kunde" style="width: 100%">
+                        <option hidden disabled selected> </option>
+                        <option>Volkswagen AG</option>
+                        <option>Daimler AG</option>
+                        <option >BMW AG</option>
+                        <option >Audi AG</option>
+                        <option >Dr. Ing. h.c. F. Porsche AG</option>
+                        <option >Valeo Schalter und Sensoren GmbH</option>
+                        <option >MAN Truck & Bus AG</option>
+                        <option >IAV S.A.S.U.</option>
+                        <option >Mercedes-AMG GmbH</option>
+                        <option>Mitsubishi Motors Corporation</option>
+                        <option >IAV Co., Ltd.</option>
+                        <option >BMW  Motoren GmbH</option>
+                        <option >CLAAS E-Systems KGaA mbH & Co KG</option>
+                        <option>NISSAN Motor Co., Ltd.</option>
+                        <option >Preh Car Connect GmbH</option>
+                        <option >IAV Automotive Engineering Inc.</option>
+                        <option>IAV Automotive Engineering</option>
+                        <option >NIRA Dynamics AB</option>
+                        <option >ISUZU Motors Limited</option>
+                        <option >CLAAS Selbstfahrende</option>
+                        <option >Volkswagen Osnabrück GmbH</option>
+                        <option >Automobili Lamborghini S.p.A.</option>
+                        <option >PSA Automobiles S.A..</option>
+                        <option >PSA Automobiles S.A..</option>
+                        <option >Claas Tractor SAS</option>
+                        <option >Schaeffler Technologies AG & Co. KG</option>
+                        <option >BMW M GmbH</option>
+                        <option >Conti Temic microelectronic GmbH</option>
+                        <option >WABCO GmbH</option>
+                        <option >Robert Bosch GmbH</option>
+                        <option >LG Electronics Deutschland GmbH</option>
+                        <option >Projektträger Jülich</option>
+                        <option >SEAT, S.A.</option>
+                        <option >IAV U.K. Ltd.</option>
+                        <option >Volkswagen Sachsen GmbH</option>
+                        <option >Scania CV AB (publ)</option>
+                        <option >Hitachi Automotive Systems</option>
+                        <option >VDI/VDE Innovation + Technik GmbH</option>
+                        <option >ZF Friedrichshafen AG</option>
+                        <option >Liebherr Machines Bulle S.A.</option>
+                        <option >European Commission</option>
+                        <option >Bugatti Engineering GmbH</option>
+                        <option >ŠKODA AUTO a.s.</option>
+                        <option >CADEA GmbH</option>
+                        <option >KOCH Consulting + Export</option>
+                        <option >Mianyang Xinchen Engine Co., Ltd.</option>
+                        <option >ETAS GmbH</option>
+                        <option >Continental Automotive GmbH</option>
+                        <option >Tata Motors Limited</option>
+                        <option >Honda R&D Co., Ltd.</option>
+                        <option >Hyundai Motor Company Headquarter</option>
+                        <option >GETRAG B.V. & Co. KG</option>
+                        <option >GKN Driveline International GmbH</option>
+                        <option >Toyota Motor Corporation</option>
+                        <option >Continental Reifen Deutschland GmbH</option>
+                        <option >Sächsisches Staatsministerium für</option>
+                        <option >IAV Fahrzeugsicherheit</option>
+                        <option >Volvo Personvagnar Aktiebolag</option>
+                        <option >Yanmar Co., Ltd.</option>
+                        <option >Automotive & Industrial</option>
+                        <option >SAIC Volkswagen</option>
+                        <option >Volkswagen do Brasil Indústria</option>
+                        <option >Subaru Corporation</option>
+                        <option >Tenneco GmbH</option>
+                        <option >MAN Truck & Bus Österreich GesmbH</option>
+                        <option >BASF Catalyst Germany GmbH</option>
+                    </select>
+                    </td>
+                    <td>
+                        <label for="karosserie">Karosserie: </label></p>
+
+                        <select id="karroserie" name="karosserie">
+                            <option hidden disabled selected> </option>
+                            <option>Rohbau</option>
+                            <option>Oberflächen und Korrosionsschutz</option>
+                            <option>Stoßfänger KU-Montageträger</option>
+                            <option>Anbauteile</option>
+                            <option>Klappen</option>
+                            <option>Türen</option>
+                            <option>Dachsysteme Schließsysteme</option>
+                            <option>ALLE</option>
+                        </select>
+                        <img  src="/images/cross.svg" onclick="deselectKarosserie()" />
+                    </td>
+                    <td>
+                        <p><label for="absicherung">Absischerung: </label></p>
+                        <select id="absicherung" name="absicherung">
+                            <option hidden disabled selected> </option>
+                            <option >Akustik</option>
+                            <option >Klappern</option>
+                            <option >Dauererprobung</option>
+                            <option >Betriebsfestigkeit</option>
+                            <option >Physische Gesamtfahrzeug-absicherung</option>
+                            <option >Geometrische und virtuelle Absicherung</option>
+                            <option >Energiemanamgement</option>
+                            <option>ALLE</option>
+                        </select>
+                        <img  src="/images/cross.svg" onclick="deselectAbsicherung()" />
+                    </td>
+                    <td>
+                        <p><label for="projektmanagement">Projektmanagement*</label></p>
+                        <select id="projektmanagement" name="projektmanagement">
+                            <option hidden disabled selected> </option>
+                            <option >Produktmanagement</option>
+                            <option >Projektleitung</option>
+                            <option >Qualitätssicherung</option>
+                            <option >Problemmanagemement</option>
+                            <option >ALLE</option>
+                        </select>
+                        <img  src="/images/cross.svg" onclick="deselectProjektmanagement()" />
+                    </td>
+
+
+
+<!--                    <td>Fachgruppen *</td>-->
+<!--                    <td>Gesamtfahrzeug * </td>-->
+<!--                    <td></td>-->
+<!--                    <td>  </td>-->
+<!--                    <td> </td>-->
+                </tr>
+
+
+
+                <tr>
+                    <td>
+                        <p> <label for="projekt">Projekt*</label></p>
+                        <input type="text" id="projekt" name="projekt" style="width: 100%">
+                    </td>
+                    <td>
+                        <p><label for="elektrikelektronik">ElektrikElektronik: </label></p>
+                            <select id="elektrikelektronik" name="elektrikelektronik">
+                                <option hidden disabled selected> </option>
+                                <option>E/E-Architektur und Vernetzung</option>
+                                <option>Bordnetze</option>
+                                <option>Instrumentierung / Infotainment</option>
+                                <option>Komfortsysteme HW-/SW-Entwicklung</option>
+                                <option>Energie und HV-System</option>
+                                <option>E-Antrieb</option>
+                                <option>Licht und Sicht</option>
+                                <option>ALLE</option>
+                            </select>
+                            <img  src="/images/cross.svg" onclick="deselectElektrikelektronik()" />
+                    </td>
+                    <td>
+                        <p>   <label for="weitere">Weitere: </label>   </p>
+                            <select id="weitere" name="weitere">
+                                <option hidden disabled selected> </option>
+                                <option >SOTIF/ FuSi</option>
+                                <option >Design</option>
+                                <option >Konzeptentwicklung</option>
+                                <option >Strak</option>
+                                <option >Aerodynamik</option>
+                                <option >EMV</option>
+                                <option >Fahrleistungen und Verbrauch</option>
+                                <option >Gewichtsmanagement</option>
+                                <option >Wettbewerbsanalyse</option>
+                                <option >Typprüfung</option>
+                                <option >Werkstatt</option>
+                                <option >ALLE</option>
+                            </select>
+                            <img  src="/images/cross.svg" onclick="deselectWeitere()" />
+                    </td>
+                    <td>
+                        <p><label for="industrialisierung">Industrialisierung</label></p>
+                        <select id="industrialisierung" name="industrialisierung">
+                            <option hidden disabled selected> </option>
+                            <option >Beschaffung</option>
+                            <option >Qualitätssicherung / Lieferanten</option>
+                            <option >Produktionsplanung</option>
+                            <option >ALLE</option>
+                        </select>
+                        <img  src="/images/cross.svg" onclick="deselectIndustrialisierung()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                     <p>   <label for="fahrwerk">Fahrwerk: </label> </p>
+                        <select id="fahrwerk" name="fahrwerk">
+                            <option hidden disabled selected> </option>
+                            <option>Fahrwerk vorne</option>
+                            <option>Lenksystem</option>
+                            <option>Bremssystem</option>
+                            <option>Fahrwerk hinten</option>
+                            <option>Kraftstoffanlage</option>
+                            <option>ALLE</option>
+                        </select>
+                        <img  src="/images/cross.svg" onclick="deselectFahrwerk()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                       <p> <label for="fahrerassistenz">Fahrerassistenz: </label></p>
+                        <select id="fahrerassistenz" name="fahrerassistenz">
+                            <option hidden disabled selected> </option>
+                            <option >Bahnplanung und Regelung</option>
+                            <option >Digitale Karte</option>
+                            <option >Lokalisierung</option>
+                            <option >Umfeldwahrnehmung</option>
+                            <option >Driving Manager</option>
+                            <option >Kollisionsvermeidung</option>
+                            <option >manuelles Fahren</option>
+                            <option>ALLE</option>
+                        </select>
+                        <img  src="/images/cross.svg" onclick="deselectFahrerassistenz()" />
+                    </td>
+                </tr>
+                <tr>
+
+                    <td></td>
+                    <td>
+                        <p><label for="antrieb">Antrieb: </label></p>
+                        <select id="antrieb" name="antrieb">
+                            <option hidden disabled selected> </option>
+                            <option >Otto Motor</option>
+                            <option >Diesel Motor</option>
+                            <option >Kraftstoff/ Ansaugung/ Kühlung</option>
+                            <option >ZP3/ ZP7 Getriebe</option>
+                            <option >Aggregate-Elektrik</option>
+                            <option >Abgasanlage</option>
+                            <option>ALLE</option>
+                        </select>
+                        <img  src="/images/cross.svg" onclick="deselectAntrieb()" /></td>
+                </tr>
+
+
+            </div>
+            </table>
+            <p class="heading">Was ist gut gelaufen?</p>
+            <%function creatPosKomm (thema){%>
+                <%for (var i =1; i<=5;i++) {%>
+                <textarea id="kommentar" name="<%='poskommentar'+thema%>" placeholder="<%='Kommentar '+i%>" style="width: 100%"></textarea><br>
+                <%}%>
+            <%}%>
+            <div class="positiv">
+            <p class="comment"> 1 Zusammenarbeit im Projekt / Teamspirit und Konfliktkultur</p>
+            <%=creatPosKomm('thema1')%>
+           <p class="comment">2 Zusammenarbeit mit dem Kunden / Spirit und Konfliktkultur</p>
+            <%=creatPosKomm('thema2')%>
+           <p class="comment">3 Projektorganisation und Projektmanagement generell</p>
+            <%=creatPosKomm('thema3')%>
+           <p class="comment">4 Projektkommunikation</p>
+            <%=creatPosKomm('thema4')%>
+           <p class="comment">5 Ziele und Projektausrichtung</p>
+            <%=creatPosKomm('thema5')%>
+           <p class="comment">6 Abläufe, Prozesse und Qualitätssicherung</p>
+            <%=creatPosKomm('thema6')%>
+           <p class="comment">7 Rollen und Aufgabenverteilung</p>
+            <%=creatPosKomm('thema7')%>
+           <p class="comment">8 Ressourcen</p>
+            <%=creatPosKomm('thema8')%>
+           <p class="comment">9 Führung und Motivation</p>
+            <%=creatPosKomm('thema9')%>
+           <p class="comment">10 Entwicklungsverständnis und Erstellung Liefergegenstände</p>
+            <%=creatPosKomm('thema10')%>
+
+            </div>
+            <p class="heading">Was ist schlecht gelaufen und welche Maßnahmen haben wir ergriffen? </p>
+            <div class="negativ">
+            <%function creatKommMass(thema) {%>
+
+            <table style="width: 100%; ">
+            <%for (var i=1; i<=5;i++) {%>
+            <%for (var z=1;z<=10;z++) {%>
+            <%if(z==1) {%>
+
+            <tr>
+                <th rowspan="10"><textarea id="kommentar" name="<%='nevkommentar'+thema%>" placeholder="<%='Kommentar '+i%>" ></textarea></th>
+                <td><textarea id="massnhame" name="<%='massnahme'+thema+"_kommentar"+i%>" placeholder="<%='Massnahme '+i+'_'+z%>" style="width: 100%"></textarea></td>
+            </tr>
+                <%} else {%>
+            <tr>
+                <td><textarea id="massnhame" name="<%='massnahme'+thema+"_kommentar"+i%>" placeholder="<%='Massnahme '+i+'_'+z%>" style="width: 100%"></textarea></td>
+            </tr>
+            <%}%>
+            <%}%>
+            <%}%>
+            </table>
+            <%}%>
+
+           <p class="comment">1 Zusammenarbeit im Projekt / Teamspirit und Konfliktkultur</p>
+            <%=creatKommMass('thema1')%>
+           <p class="comment">2 Zusammenarbeit mit dem Kunden / Spirit und Konfliktkultur</p>
+            <%=creatKommMass('thema2')%>
+           <p class="comment">3 Projektorganisation und Projektmanagement generell</p>
+            <%=creatKommMass('thema3')%>
+           <p class="comment">4 Projektkommunikation</p>
+            <%=creatKommMass('thema4')%>
+           <p class="comment">5 Ziele und Projektausrichtung</p>
+            <%=creatKommMass('thema5')%>
+           <p class="comment">6 Abläufe, Prozesse und Qualitätssicherung</p>
+            <%=creatKommMass('thema6')%>
+           <p class="comment">7 Rollen und Aufgabenverteilung</p>
+            <%=creatKommMass('thema7')%>
+           <p class="comment">8 Ressourcen</p>
+            <%=creatKommMass('thema8')%>
+           <p class="comment">9 Führung und Motivation</p>
+            <%=creatKommMass('thema9')%>
+           <p class="comment">10 Entwicklungsverständnis und Erstellung Liefergegenstände</p>
+            <%=creatKommMass('thema10')%>
+
+        </div>
+        </div>
+
+        <br>
+        <div style="width: 14%; margin:0 auto;">
+            <input id="submit" type="submit" value="zur Vorschau">
+        </div>
+    </form>
+</div>
+</div>
+<script>
+
+    function deselectAusstattung() {
+        document.getElementById("ausstattung").selectedIndex = "-1";
+    }
+    function deselectKarosserie() {
+        document.getElementById("karroserie").selectedIndex = "-1";
+    }
+    function deselectElektrikelektronik() {
+        document.getElementById("elektrikelektronik").selectedIndex = "-1";
+    }
+
+    function deselectFahrwerk() {
+        document.getElementById("fahrwerk").selectedIndex = "-1";
+    }
+
+    function deselectFahrerassistenz() {
+        document.getElementById("fahrerassistenz").selectedIndex = "-1";
+    }
+    function deselectAntrieb() {
+        document.getElementById("antrieb").selectedIndex = "-1";
+    }
+    function deselectSteuerung() {
+        document.getElementById("steuerung").selectedIndex = "-1";
+    }
+  function deselectAbsicherung() {
+        document.getElementById("absicherung").selectedIndex = "-1";
+    }
+  function deselectWeitere() {
+        document.getElementById("weitere").selectedIndex = "-1";
+    }
+    function deselectVorseriencenter() {
+        document.getElementById("vorseriencenter").selectedIndex = "-1";
+    }
+    function deselectProjektmanagement() {
+        document.getElementById("projektmanagement").selectedIndex = "-1";
+    }
+    function deselectIndustrialisierung() {
+        document.getElementById("industrialisierung").selectedIndex = "-1";
+    }
+
+
+
+
+
+</script>

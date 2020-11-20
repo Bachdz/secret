@@ -1,0 +1,36 @@
+<link rel="stylesheet" type="text/css" href="/css/fileupload-response.css">
+<%- include header.ejs%>
+<div class="content" style="text-align: center">
+
+
+    <%if(typeof messageSame !== 'undefined' && hashId !== 'undefined') { %>
+
+        <img id="alert" src="/images/alert.svg" style="width: 10%;height: 10%"/>
+        <p><b><%= messageSame%></b></p>
+        <p>Link zum Fall:<a href="<%=localUrl%>/details?hashId=<%=hashId%>" target="_blank"> <%=localUrl%>/details?hashId=<%=hashId%> </a></p>
+        <p> möchten Sie den Fall trotzdem hochladen?</p>
+        <form action="/upload-new-case/preview/push/force=true" method="post" >
+
+            <button type="submit">Ja</button>
+            <a href="/index"><button type="button">Nein, zurück zur Startseite</button></a>
+        </form>
+
+
+    <%}else if ( typeof messageSuccess !== 'undefined') {%>
+
+
+            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+            <p><%= messageSuccess%></p>
+            <p>Link zum Fall:<a href="<%=localUrl%>/details?hashId=<%=hashId%>" target="_blank"> <%=localUrl%>/details?hashId=<%=hashId%> </a></p>
+            <a href="/index"><button type="button">Zurück zur Startseite</button></a>
+
+            <%} else if (typeof error !== 'undefined') {%>
+            <img src="/images/icon.svg" style="width: 15%;height: 15%"/>
+        <p>Leider ist etwas schief gelaufen, bitte versuchen Sie später nochmal</p>
+            <a href="/index"><button type="button">Zurück zur Startseite</button></a>
+
+        <p>Error details: <%= error%></p>
+
+    <%}%>
+
+</div>

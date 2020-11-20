@@ -1,0 +1,89 @@
+<link rel="stylesheet" type="text/css" href="/css/fileupload-modal.css">
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p id="heading">Neuen Eintrag erstellen</p>
+        <div id="detail">
+            <p>Du kannst eine Excel-Datei in die Datenbank laden oder den neuen Eintrag direkt mit Hilfe einer Eingabemaske erstellen.</p>
+            <p>Wenn Du gerade keine Zeit hast Deine Lessons Learned hier hochzuladen, kannst Du sie uns auch schicken. Wir binden sie gern für Dich ein.<br>
+                Bitte sende hierzu Deine Lessons Learned an <a href = "mailto: klaus.sulimma@iav.de">klaus.sulimma@iav.de</a>.</p>
+        </div>
+        <div class="tab">
+        <button class="tablinks" onclick="openDiv(event, 'upload-file')">*.xls File hochladen</button>
+            <div class="space"> </div>
+        <button class="tablinks" onclick="window.open('upload-new-case','_blank')">direkt zur Eingabemaske</button>
+        </div>
+        <div id="upload-file" class="tabcontent">
+            <form method="POST" action="/upload-new-case" enctype="multipart/form-data" onchange="return Validate(this);">
+                <div>
+                    <label>Bitte einen Fall auswählen:</label>
+                    <input type="file" name="newCase" id="new"/>
+                </div>
+                <br>
+                <a href="documents/Erfassung LL.xlsm" download=>Vorlage</a> zum Herunterladen.
+                <div style="text-align: center">
+                    <input type="submit" id="button" name="btn_upload_profile_pic" value="Upload" style="margin-top:20px; display: none" />
+                </div>
+            </form>
+        </div>
+
+</div>
+</div>
+<script>
+    function openDiv(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+
+    }
+    // function myFunction () {
+    // if( document.getElementById("new").files.length == 0 ){
+    //     document.getElementById("button").style.display ="none";
+    // }else {
+    //     document.getElementById("button").style.display ="inline-block";
+    // }
+    // }
+
+    const _validFileExtensions = [".xlsm"];
+
+    /**
+     * @return {boolean}
+     */
+    function Validate(oForm) {
+        const arrInputs = oForm.getElementsByTagName("input");
+        for (let i = 0; i < arrInputs.length; i++) {
+            const oInput = arrInputs[i];
+            if (oInput.type === "file") {
+                const sFileName = oInput.value;
+                if (sFileName.length > 0) {
+                    let blnValid = false;
+                    for (let j = 0; j < _validFileExtensions.length; j++) {
+                        const sCurExtension = _validFileExtensions[j];
+                        if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() === sCurExtension.toLowerCase()) {
+                            blnValid = true;
+                            document.getElementById("button").style.display ="inline-block";
+                            break;
+                        }
+                    }
+
+                    if (!blnValid) {
+                        alert("Dateieingabe " + sFileName + " ist ungültig. Erlaubte Datei ist nur mit der Format " + _validFileExtensions);
+                        document.getElementById("button").style.display ="none";
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+</script>

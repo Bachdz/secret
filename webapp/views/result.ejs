@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/css/result.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer-new.css">
+    <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="/js/script.js"></script>
+    <title>Results</title>
+</head>
+<body>
+<%- include header.ejs %>
+    <div class="container" style="margin-bottom:60px">
+    <div class="search-box-container">
+        <div  class="big-row">
+       <a href="/index" class="ll-logo">Lessons Learned Datenbank</a>
+        </div>
+        <div class="search-field">
+        <%- include searchbox.ejs %>
+        </div>
+
+
+    </div>
+    </div>
+
+
+
+<div class="result-container">
+    <%if(typeof posts !== 'undefined' && Object.keys(posts).length>0 && localUrl !== 'undefined' ) { %>
+
+        <% for (var i = 0; i < posts.length; i++)    { %>
+        <%if (posts[i].basisinfo !== null) {%>
+            <div id="display-result">
+                <div class="result-list result-<% posts[i] %>">
+
+                    <a class="result-title title-<% posts[i]%>" href="details?hashId=<%=posts[i].hashId%>" target="_blank">
+                       <%= posts[i].basisinfo.projekt %>
+                    </a>
+
+                    <img  src="/images/broken-link.png" id="copy-link" alt='copy-link' title="Link zum Dokument kopieren" onclick="copy( '<%=localUrl%>/details?hashId=<%=posts[i].hashId%> ')" style="cursor:pointer;">
+                    <br>
+                    <span class="result-snippet snippet-<% posts[i] %>">
+                        <% for (var key in posts[i].basisinfo) { %>
+                        <%if (posts[i].basisinfo.hasOwnProperty(key)) { %>
+                                <%if (typeof posts[i].basisinfo[key] !='object') {%>
+                            #<%= key %> : <%=posts[i].basisinfo[key]%>&nbsp;&nbsp;
+                        <%}%>
+                        <%}%>
+                        <%}%>
+                    </span>
+                    <br>
+                    <span class="result-metadata metadata-<% posts[i] %>">
+                        <%const iterate = (obj) => {%>
+                        <%if(obj!== null) {%>
+                        <%Object.keys(obj).forEach(key => {%>
+                        <%if (typeof obj[key] != 'object' ) {%>
+                        <%if(obj[key] !== ' ') {%>
+                        #<%=key%>: <%=obj[key]%>
+                        <%}%>
+                        <%}%>
+                        <%if (typeof obj[key] === 'object') {%>
+                         • <%=key.toUpperCase()%>:
+                        <%iterate(obj[key])%>
+                        <%}%>
+                        <%})%>
+                        <%}%>
+                        <%}%>
+                        <%= iterate(posts[i].basisinfo.gewerke);%>
+
+
+                    </span>
+                </div>
+            </div>
+        <%}%>
+
+
+<% }  %>
+    <% }  else  { %>
+
+    <p>Kein passendes Ergebnis gefunden für: <b>  <%= key%></b></p>
+
+        <% } %>
+</div>
+
+
+<%- include footer-new.ejs%>
+<%- include fileupload.ejs%>
+
+</body>
+</html>
