@@ -186,24 +186,24 @@ router.post('/result', redirectLogin, (req, res) => {
     let searchString = req.body.search;
     let searchUrl = url + searchString;
     let encodeUrl=  encodeURI(searchUrl);
-   request(encodeUrl, {'auth': {'bearer': req.session.token}} ,function (error, response, body) {
+   request.get(encodeUrl, {'auth': {'bearer': req.session.token}} ,function (error, response, body) {
 
         try {
             if (response.statusCode === 401) {
-                res.render('login-response');
+                res.status(401).render('login-response');
             }
             else if (response.statusCode === 200) {
                 let jsonData = JSON.parse(body);
                 console.log(jsonData);
 
-                res.render('result', {
+                res.status(200).render('result', {
                     posts: jsonData,
                     searchValue: req.body.search,
                     localUrl: localURL,
                     vorname : req.session.vorname, nachname : req.session.nachname
                 });
             } else if (response.statusCode === 204) {
-                res.render('result', {
+                res.status(204).render('result', {
                     searchValue: req.body.search,
                     key: req.body.search,
                 vorname : req.session.vorname, nachname : req.session.nachname
@@ -221,15 +221,16 @@ router.post('/result', redirectLogin, (req, res) => {
 router.get('/details', redirectLogin, (req, res) => {
     let url = 'https://ll-db-backend.c1.k8s.iavgroup.local/api/LessonsLearnedDb/hashId?hashId=';
     let hashId = req.query.hashId;
+    console.log(hashId);
     let getUrl = url + hashId;
 
-    request(getUrl, {'auth': {'bearer': req.session.token}},function (error, response, body) {
+    request.get(getUrl, {'auth': {'bearer': req.session.token}},function (error, response, body) {
         // if(response.statusCode===401) {
         //     res.send("Bitte melden Sie sich erneut an!");
         // } else {
         try {
             if (response.statusCode === 401) {
-                res.render('login-response');
+                res.status(401).render('login-response');
             } else  if (response.statusCode === 200) {
 
                 //replace Kundenname
@@ -240,7 +241,7 @@ router.get('/details', redirectLogin, (req, res) => {
 
 
                 let json = JSON.parse(newJson);
-                res.render('details', {
+                res.status(200).render('details', {
                     posts: json,
                     vorname : req.session.vorname, nachname : req.session.nachname
                 });
@@ -285,24 +286,24 @@ router.get('/upload-new-case', redirectLogin, (req,res) => {
 });
 
 
-router.post('/upload-new-case', redirectLogin, (req, res,next) => {
-
+router.post('/upload-new-case', redirectLogin, (req, res) => {
     // 'newCase' is the name of our file input field in the HTML form
-    let upload = multer({ storage: storage, fileFilter: fileFilter }).single('newCase');
+    let upload = multer({ storage: storage, fileFilter: fileFilter }).single('newCase') ;
 
 
     upload(req, res, function(err) {
+        console.log("hierzu");
         if (err) {
-            return res.send(err.toString());
+            return res.status(404).send(err.toString());
         }
         else if (req.fileValidationError) {
-            return res.send(req.fileValidationError);
+            return res.status(404).send(req.fileValidationError);
         }
         // req.file contains information of uploaded file
         // req.body contains information of text fields, if there were any
         else if (!req.file) {
             const error = new Error('Please upload a file');
-            return next(error)
+            return res.status(404).send(error);
         }
         else if (err instanceof multer.MulterError) {
             return res.send(err);
@@ -330,13 +331,12 @@ router.post('/upload-new-case', redirectLogin, (req, res,next) => {
             }
         }
     });
-
 });
 
 router.post('/upload-new-case/preview/push/force=true', redirectLogin, (req,res) => {
     let localURL = req.protocol + '://' + req.get('host');
     try {
-       module.exports= request.post({
+      request.post({
             header: {'Content-Type': 'application/json-patch+json', 'accept': 'text/plain'},
             url: ' https://ll-db-backend.c1.k8s.iavgroup.local/api/LessonsLearnedDb/addNewCase?force=true',
             json: req.session.jsonObj,
